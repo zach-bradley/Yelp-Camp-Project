@@ -18,7 +18,11 @@ var commentRoutes = require("./routes/comments"),
 
 //seedDB(); //Seed Database
 var url = process.env.DATABASEURL;
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+   .then(() => console.log('DB Connected'))
+   .catch(err => console.log(Error, err.message));
+
+mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");

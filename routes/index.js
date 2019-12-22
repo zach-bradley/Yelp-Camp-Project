@@ -8,8 +8,6 @@ router.get("/", function(req, res){
    res.render("landing");
 });
 
-
-
 //Auth Routes
 
 //Show register Form
@@ -27,7 +25,7 @@ router.post("/register", function(req, res){
          return res.render("register")
       }
       passport.authenticate("local")(req, res, function(){
-         req.slash("success", "welcome to YelpCamp" + user.username);
+         req.flash("success", "welcome to YelpCamp" + user.username);
          res.redirect("/campgrounds");
       });
    });
